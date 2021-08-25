@@ -1,0 +1,102 @@
+{
+  "app-id": "com.github.birros.FlutterVLCDemo",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "40",
+  "sdk": "org.gnome.Sdk",
+  "command": "flutter_vlc_demo",
+  "finish-args": [
+    "--socket=wayland",
+    "--socket=pulseaudio",
+    "--share=network",
+    "--device=dri"
+  ],
+  "cleanup": [
+    "/include",
+    "/lib/pkgconfig",
+    "/share",
+    "/lib/cmake",
+    "*.la",
+    "*.a"
+  ],
+  "cleanup-commands": [
+    "rm -f /app/lib/vlc/plugins/plugins.dat",
+    "/app/lib/vlc/vlc-cache-gen /app/lib/vlc/plugins"
+  ],
+  "build-options": {
+    "env": {
+      "V": "1"
+    }
+  },
+  "modules": [
+    {
+      "name": "ffmpeg",
+      "config-opts": [
+        "--enable-pic",
+        "--enable-shared",
+        "--disable-doc",
+        "--disable-static",
+        "--enable-gpl",
+        "--enable-libvpx",
+        "--enable-libmp3lame",
+        "--enable-libvorbis",
+        "--enable-libopus"
+      ],
+      "cleanup": [
+        "/bin",
+        "/share"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "http://ffmpeg.org/releases/ffmpeg-4.4.tar.xz",
+          "sha256": "06b10a183ce5371f915c6bb15b7b1fffbe046e8275099c96affc29e17645d909"
+        }
+      ]
+    },
+    {
+      "name": "vlc",
+      "build-options": {
+        "env": {
+          "BUILDCC": "/usr/bin/gcc -std=gnu99"
+        }
+      },
+      "rm-configure": true,
+      "config-opts": [
+        "--disable-a52",
+        "--disable-lua",
+        "--disable-xcb",
+        "--disable-alsa",
+        "--disable-qt",
+        "--disable-ncurses"
+      ],
+      "cleanup": [
+        "/bin",
+        "/lib/vlc/vlc-cache-gen"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://get.videolan.org/vlc/3.0.16/vlc-3.0.16.tar.xz",
+          "sha256": "ffae35fc64f625c175571d2346bc5f6207be99762517f15423e74f18399410f6"
+        }
+      ]
+    },
+    {
+      "name": "flutter_vlc_demo",
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -p /app/libexec/flutter_vlc_demo/lib",
+        "cp lib/libflutter_linux_gtk.so /app/lib/",
+        "cp -r {data,flutter_vlc_demo} /app/libexec/flutter_vlc_demo/",
+        "cp lib/libapp.so /app/libexec/flutter_vlc_demo/lib/",
+        "ln -s /app/libexec/flutter_vlc_demo/flutter_vlc_demo /app/bin/flutter_vlc_demo"
+      ],
+      "sources": [
+        {
+          "type": "dir",
+          "path": "../../build/linux/x64/release/bundle"
+        }
+      ]
+    }
+  ]
+}

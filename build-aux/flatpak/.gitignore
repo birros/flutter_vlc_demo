@@ -1,0 +1,4 @@
+builddir
+.flatpak-builder
+repo
+flutter_vlc_demo.flatpak
