@@ -17,6 +17,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter VLC Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        appBarTheme: AppBarTheme(
+          brightness: Brightness.dark,
+        ),
       ),
       home: MyHomePage(title: 'Flutter VLC Demo'),
     );

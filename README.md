@@ -19,3 +19,10 @@ $ cd build-aux/flatpak && \
     flatpak --user install ./flutter_vlc_demo.flatpak
 $ flatpak run com.github.birros.FlutterVLCDemo
 ```
+
+## iOS build
+
+```shell
+$ flutter build ipa --release --export-options-plist=./ios/ExportOptions.plist
+$ # install it with https://github.com/rileytestut/AltStore
+```
