@@ -45,7 +45,7 @@ class VideoController: NSViewController {
       alpha: 1.0
     ).cgColor
     button.target = self
-    button.action = #selector(VideoController.printSomething)
+    button.action = #selector(VideoController.onBack)
     self.view.addSubview(button)
   }
 
@@ -82,7 +82,7 @@ class VideoController: NSViewController {
   }
 
   @objc
-  func printSomething() {
+  func onBack() {
     self.delegate?.videoDone()
   }
 }
