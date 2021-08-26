@@ -15,8 +15,8 @@ $ sudo dnf install vlc-devel gtk3-devel mesa-dri-drivers
 $ flutter build linux --release
 $ cd build-aux/flatpak && \
     flatpak-builder --force-clean --repo=repo builddir com.github.birros.FlutterVLCDemo.json && \
-    flatpak build-bundle repo flutter_vlc_demo.flatpak com.github.birros.FlutterVLCDemo && \
-    flatpak --user install ./flutter_vlc_demo.flatpak
+    flatpak build-bundle repo flutter_vlc_demo.flatpak com.github.birros.FlutterVLCDemo
+$ flatpak --user install ./build-aux/flatpak/flutter_vlc_demo.flatpak
 $ flatpak run com.github.birros.FlutterVLCDemo
 ```
 
