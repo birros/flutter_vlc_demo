@@ -26,3 +26,9 @@ $ flatpak run com.github.birros.FlutterVLCDemo
 $ flutter build ipa --release --export-options-plist=./ios/ExportOptions.plist
 $ # install it with https://github.com/rileytestut/AltStore
 ```
+
+## Android build
+
+```shell
+$ flutter build apk
+```
