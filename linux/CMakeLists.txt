@@ -43,7 +43,7 @@ add_subdirectory(${FLUTTER_MANAGED_DIR})
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK REQUIRED IMPORTED_TARGET gtk+-3.0)
 pkg_check_modules(VLC REQUIRED IMPORTED_TARGET libvlc)
-pkg_check_modules(GL REQUIRED IMPORTED_TARGET gl)
+pkg_check_modules(GL  REQUIRED IMPORTED_TARGET gl)
 
 add_definitions(-DAPPLICATION_ID="${APPLICATION_ID}")
 
@@ -51,6 +51,7 @@ add_definitions(-DAPPLICATION_ID="${APPLICATION_ID}")
 add_executable(${BINARY_NAME}
   "main.cc"
   "my_application.cc"
+  "wrapper.cc"
   "libvlc_gtkglarea.cc"
   "${FLUTTER_MANAGED_DIR}/generated_plugin_registrant.cc"
 )
